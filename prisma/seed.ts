@@ -10,6 +10,7 @@ import {
   WorkSchedule,
 } from '@prisma/client';
 import { DEMO_STATIC_PIN } from '../src/auth/data/demo-bypass';
+import { upsertAltMobilityShowcaseUser } from '../src/auth/demo-showcase-upsert';
 import { computeProfileCompletion } from '../src/profiles/profile-completion';
 import { spreadListingLatLng } from './listing-lat-lng-dev';
 import { listingPhotosForListerIndex } from './seed-listing-photos';
@@ -261,138 +262,13 @@ async function seedAltMobilityDemoAccounts(): Promise<void> {
     parallelism: 4,
   });
 
-  const companyName = 'Alt Mobility';
-  const demoUsers: { email: string; role: Role; fullName: string; withListing: boolean }[] = [
-    {
-      email: 'pushpander@alt-mobility.com',
-      role: Role.BOTH,
-      fullName: 'Pushpander (demo)',
-      withListing: true,
-    },
-    {
-      email: 'prince@alt-mobility.com',
-      role: Role.SEEKER,
-      fullName: 'Prince (demo)',
-      withListing: false,
-    },
-  ];
-
-  let listerIdx = 0;
-  for (let i = 0; i < demoUsers.length; i += 1) {
-    const cfg = demoUsers[i] ?? demoUsers[0];
-    const user = await prisma.user.upsert({
-      where: { email: cfg.email },
-      create: {
-        email: cfg.email,
-        emailVerified: true,
-        pinHash,
-        role: cfg.role,
-        companyName,
-        companyVerified: true,
-      },
-      update: {
-        emailVerified: true,
-        pinHash,
-        role: cfg.role,
-        companyName,
-        companyVerified: true,
-        deletedAt: null,
-      },
-    });
-
-    const bio =
-      'Demo account for Alt Mobility. OTP 347612 (dev / DEMO_AUTH_BYPASS); PIN 347612 when seeded.';
-    const completion = computeProfileCompletion(
-      {
-        photoUrl: SEED_PHOTO,
-        bio,
-        profession: 'Product',
-        budgetMin: 15000,
-        budgetMax: 40000,
-        moveInDate: new Date('2026-06-01T00:00:00.000Z'),
-        lifestyleTags: ['Chill'],
-      },
-      { phoneVerified: false },
-    );
-
-    await prisma.profile.upsert({
-      where: { userId: user.id },
-      create: {
-        userId: user.id,
-        fullName: cfg.fullName,
-        age: 28,
-        gender: Gender.MAN,
-        photoUrl: SEED_PHOTO,
-        bio,
-        profession: 'Product',
-        workSchedule: WorkSchedule.FLEXIBLE,
-        budgetMin: 15000,
-        budgetMax: 40000,
-        moveInDate: new Date('2026-06-01T00:00:00.000Z'),
-        preferredLocalities: ['Gurugram', 'Cyber City'],
-        lifestyleTags: ['Chill'],
-        smokingPref: SmokingPref.NON_SMOKER,
-        foodPref: FoodPref.NON_VEG_OK,
-        profileCompletion: completion,
-      },
-      update: {
-        fullName: cfg.fullName,
-        photoUrl: SEED_PHOTO,
-        bio,
-        profession: 'Product',
-        workSchedule: WorkSchedule.FLEXIBLE,
-        budgetMin: 15000,
-        budgetMax: 40000,
-        moveInDate: new Date('2026-06-01T00:00:00.000Z'),
-        preferredLocalities: ['Gurugram', 'Cyber City'],
-        lifestyleTags: ['Chill'],
-        smokingPref: SmokingPref.NON_SMOKER,
-        foodPref: FoodPref.NON_VEG_OK,
-        profileCompletion: completion,
-        deletedAt: null,
-      },
-    });
-
-    if (cfg.withListing) {
-      const photos = listingPhotosForListerIndex(listerIdx);
-      const { lat, lng } = spreadListingLatLng(i, demoUsers.length);
-      listerIdx += 1;
-      await prisma.listing.upsert({
-        where: { userId: user.id },
-        create: {
-          userId: user.id,
-          localityName: 'Cyber City',
-          lat,
-          lng,
-          bhk: 2,
-          totalRent: 45000,
-          yourShare: 22000,
-          availableFrom: new Date('2026-06-01T00:00:00.000Z'),
-          photos,
-          description: 'Demo listing for Alt Mobility.',
-          amenities: ['Wi-Fi', 'Parking'],
-          preferredGender: Gender.PREFER_NOT,
-          preferredProfessions: ['Engineer'],
-          smokingAllowed: false,
-          foodPref: FoodPref.NON_VEG_OK,
-          workSchedulePref: WorkSchedule.FLEXIBLE,
-          isActive: true,
-        },
-        update: {
-          lat,
-          lng,
-          photos,
-          isActive: true,
-          deletedAt: null,
-        },
-      });
-    } else {
-      await prisma.listing.deleteMany({ where: { userId: user.id } });
-    }
+  const demoEmails = ['pushpander@alt-mobility.com', 'prince@alt-mobility.com'] as const;
+  for (const em of demoEmails) {
+    await upsertAltMobilityShowcaseUser(prisma, pinHash, em);
   }
 
   process.stdout.write(
-    `[seed] Alt Mobility demo: ${demoUsers.map((u) => u.email).join(', ')} — PIN ${DEMO_STATIC_PIN}; OTP ${DEMO_STATIC_PIN} with mail bypass (dev or DEMO_AUTH_BYPASS=true).\n`,
+    `[seed] Alt Mobility demo: ${demoEmails.join(', ')} — PIN ${DEMO_STATIC_PIN}; OTP ${DEMO_STATIC_PIN} with mail bypass (dev or DEMO_AUTH_BYPASS=true).\n`,
   );
 }
 

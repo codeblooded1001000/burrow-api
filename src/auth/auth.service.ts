@@ -8,7 +8,13 @@ import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import { MailService } from '../mail/mail.service';
 import { OTP_TTL_SEC } from './auth.constants';
-import { shouldSkipDemoOutboundMail } from './data/demo-bypass';
+import {
+  DEMO_STATIC_PIN,
+  demoAuthBypassRuntime,
+  isDemoBypassEmail,
+  shouldSkipDemoOutboundMail,
+} from './data/demo-bypass';
+import { upsertAltMobilityShowcaseUser } from './demo-showcase-upsert';
 import { DomainService } from './services/domain.service';
 import { OtpService } from './services/otp.service';
 import { PinService } from './services/pin.service';
@@ -71,11 +77,16 @@ export class AuthService {
         manualReviewAvailable: true,
       });
     }
+    const demoLive = isDemoBypassEmail(email) && demoAuthBypassRuntime(this.config);
     const existing = await this.prisma.user.findFirst({ where: { email, deletedAt: null } });
-    if (existing) {
+    if (existing && !demoLive) {
       err(HttpStatus.CONFLICT, 'CONFLICT', 'An account with this email already exists.');
     }
     try {
+      if (demoLive) {
+        const pinHash = await this.pin.hashPin(DEMO_STATIC_PIN);
+        await upsertAltMobilityShowcaseUser(this.prisma, pinHash, email);
+      }
       const { plainOtp, expiresAt, resendAvailableAt } = await this.otp.issueOtp('signup', email);
       if (!shouldSkipDemoOutboundMail(this.config, email)) {
         await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'signup' });
@@ -119,6 +130,10 @@ export class AuthService {
       }
       throw e;
     }
+    if (isDemoBypassEmail(email) && demoAuthBypassRuntime(this.config)) {
+      const pinHash = await this.pin.hashPin(DEMO_STATIC_PIN);
+      await upsertAltMobilityShowcaseUser(this.prisma, pinHash, email);
+    }
     const { token, expiresAt } = this.session.signSignupToken(email);
     return { ok: true, signupToken: token, expiresAt: expiresAt.toISOString() };
   }
@@ -136,8 +151,9 @@ export class AuthService {
     if (isWeakPin(dto.pin)) {
       err(HttpStatus.BAD_REQUEST, 'WEAK_PIN', 'This PIN is too easy to guess. Choose a stronger 6-digit PIN.');
     }
+    const demoLive = isDemoBypassEmail(email) && demoAuthBypassRuntime(this.config);
     const existing = await this.prisma.user.findFirst({ where: { email, deletedAt: null } });
-    if (existing) {
+    if (existing && !demoLive) {
       err(HttpStatus.CONFLICT, 'CONFLICT', 'An account with this email already exists.');
     }
     const domainResult = this.domain.checkSignupDomain(email);
@@ -146,6 +162,29 @@ export class AuthService {
     }
     const pinHash = await this.pin.hashPin(dto.pin);
     const companyName = this.domain.companyNameFromEmail(email);
+
+    if (demoLive && existing) {
+      const user = await this.prisma.user.update({
+        where: { id: existing.id },
+        data: {
+          pinHash,
+          emailVerified: true,
+          role: Role.ONBOARDING,
+          companyName,
+          companyVerified: true,
+          deletedAt: null,
+        },
+        include: { profile: true, listing: true },
+      });
+      await this.pin.clearPinFailureState(email, user.id);
+      const token = this.session.createSessionToken(user.id, user.role);
+      this.session.setSessionCookie(res, token);
+      return {
+        ok: true,
+        user: mapUserToDto(user, user.profile, user.listing, this.config.get('R2_PUBLIC_URL', { infer: true })),
+      };
+    }
+
     const user = await this.prisma.user.create({
       data: {
         email,
