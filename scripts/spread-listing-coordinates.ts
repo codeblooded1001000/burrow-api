@@ -9,7 +9,7 @@
 import { resolve } from 'node:path';
 import { config } from 'dotenv';
 import { PrismaClient } from '@prisma/client';
-import { spreadListingLatLng } from '../prisma/listing-lat-lng-dev';
+import { spreadListingLatLng } from '../src/dev-seed/listing-lat-lng-dev';
 
 config({ path: resolve(process.cwd(), '.env') });
 

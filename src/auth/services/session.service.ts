@@ -81,11 +81,16 @@ export class SessionService {
     return { sub: decoded.sub, role: decoded.role as Role };
   }
 
+  /**
+   * Production deploys use a separate UI origin (e.g. Vercel) and API host; that is cross-site.
+   * `SameSite=Lax` cookies are not sent on `fetch` from the UI to the API, so sessions never stick.
+   * `SameSite=None` + `Secure` is required for credentialed cross-origin requests.
+   */
   setSessionCookie(res: Response, token: string): void {
     const isProd = this.config.get('NODE_ENV', { infer: true }) === 'production';
     res.cookie(SESSION_COOKIE_NAME, token, {
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: isProd ? 'none' : 'lax',
       secure: isProd,
       path: '/',
       maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -96,7 +101,7 @@ export class SessionService {
     const isProd = this.config.get('NODE_ENV', { infer: true }) === 'production';
     res.clearCookie(SESSION_COOKIE_NAME, {
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: isProd ? 'none' : 'lax',
       secure: isProd,
       path: '/',
     });

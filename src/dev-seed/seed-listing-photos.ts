@@ -1,5 +1,5 @@
 /**
- * Curated flat / room photos (Unsplash CDN, static URLs). Shared by `seed.ts` and
+ * Curated flat / room photos (Unsplash CDN, static URLs). Shared by seeds and
  * `update-listing-photos.ts`. https://unsplash.com/license
  */
 export const SEED_LISTING_PHOTOS = [

@@ -12,8 +12,8 @@ import {
 import { DEMO_STATIC_PIN } from '../src/auth/data/demo-bypass';
 import { upsertAltMobilityShowcaseUser } from '../src/auth/demo-showcase-upsert';
 import { computeProfileCompletion } from '../src/profiles/profile-completion';
-import { spreadListingLatLng } from './listing-lat-lng-dev';
-import { listingPhotosForListerIndex } from './seed-listing-photos';
+import { spreadListingLatLng } from '../src/dev-seed/listing-lat-lng-dev';
+import { listingPhotosForListerIndex } from '../src/dev-seed/seed-listing-photos';
 
 const prisma = new PrismaClient();
 

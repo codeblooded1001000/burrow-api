@@ -1,8 +1,8 @@
 import { FoodPref, Gender, Role, SmokingPref, WorkSchedule, type PrismaClient } from '@prisma/client';
 import { computeProfileCompletion } from '../profiles/profile-completion';
 import { isDemoBypassEmail } from './data/demo-bypass';
-import { spreadListingLatLng } from '../../prisma/listing-lat-lng-dev';
-import { listingPhotosForListerIndex } from '../../prisma/seed-listing-photos';
+import { spreadListingLatLng } from '../dev-seed/listing-lat-lng-dev';
+import { listingPhotosForListerIndex } from '../dev-seed/seed-listing-photos';
 
 /** Same hero image as `prisma/seed.ts` (Unsplash). */
 export const DEMO_SHOWCASE_PHOTO =

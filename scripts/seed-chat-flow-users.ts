@@ -27,8 +27,8 @@ import {
 } from '@prisma/client';
 import { orderedParticipantIds } from '../src/common/types/conversation-order';
 import { computeProfileCompletion } from '../src/profiles/profile-completion';
-import { spreadListingLatLng } from '../prisma/listing-lat-lng-dev';
-import { listingPhotosForListerIndex } from '../prisma/seed-listing-photos';
+import { spreadListingLatLng } from '../src/dev-seed/listing-lat-lng-dev';
+import { listingPhotosForListerIndex } from '../src/dev-seed/seed-listing-photos';
 
 config({ path: resolve(process.cwd(), '.env') });
 

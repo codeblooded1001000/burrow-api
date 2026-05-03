@@ -3,7 +3,7 @@ import {
   GURGAON_LAT_MIN,
   GURGAON_LNG_MAX,
   GURGAON_LNG_MIN,
-} from '../src/maps/gurgaon-place';
+} from '../maps/gurgaon-place';
 
 const LAT_PAD = 0.02;
 const LNG_PAD = 0.02;

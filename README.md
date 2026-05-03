@@ -114,7 +114,7 @@ Every variable in [`.env.example`](./.env.example) is validated at startup (via 
 | `npm run prisma:migrate` | `prisma migrate dev` |
 | `npm run prisma:studio` | Prisma Studio |
 | `npm run seed` | Run `prisma/seed.ts` |
-| `npm run update-listing-photos` | Set every listing’s `photos` to the curated URLs in `prisma/seed-listing-photos.ts` (dev by default; set `UPDATE_LISTING_PHOTOS=true` otherwise) |
+| `npm run update-listing-photos` | Set every listing’s `photos` to the curated URLs in `src/dev-seed/seed-listing-photos.ts` (dev by default; set `UPDATE_LISTING_PHOTOS=true` otherwise) |
 | `npm run db:reset` | Interactive wrapper around `prisma migrate reset` |
 
 ## Documentation

@@ -1,5 +1,5 @@
 /**
- * Sets `photos` on every listing to the curated URLs from `seed-listing-photos.ts`
+ * Sets `photos` on every listing to the curated URLs from `src/dev-seed/seed-listing-photos.ts`
  * (same triple rotation as seed, by row order). Use after seed or to refresh images
  * without re-running full seed.
  *
@@ -11,7 +11,7 @@
 import { resolve } from 'node:path';
 import { config } from 'dotenv';
 import { PrismaClient } from '@prisma/client';
-import { listingPhotosForListerIndex } from './seed-listing-photos';
+import { listingPhotosForListerIndex } from '../src/dev-seed/seed-listing-photos';
 
 config({ path: resolve(__dirname, '..', '.env') });
 

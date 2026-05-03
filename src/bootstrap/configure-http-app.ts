@@ -54,6 +54,9 @@ function createCorsOriginDelegate(
 
 export function configureHttpApp(app: INestApplication): void {
   const config = app.get(ConfigService<Env, true>);
+  const httpApp = app.getHttpAdapter().getInstance() as { set?: (key: string, value: unknown) => void };
+  httpApp.set?.('trust proxy', 1);
+
   app.setGlobalPrefix('api/v1');
   app.useGlobalPipes(createGlobalZodPipe());
   app.use(cookieParser());
