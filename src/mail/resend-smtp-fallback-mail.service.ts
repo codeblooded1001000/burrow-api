@@ -54,6 +54,7 @@ export class ResendSmtpFallbackMailService extends MailService {
 
   async send(params: MailSendParams): Promise<void> {
     const from = this.config.get('EMAIL_FROM', { infer: true });
+    const smtpUser = this.config.get('SMTP_USER', { infer: true });
     const domain = recipientDomain(params.to);
     this.log.log(
       [
@@ -98,7 +99,7 @@ export class ResendSmtpFallbackMailService extends MailService {
         ].join(' '),
       );
       await this.smtp.sendMail({
-        from,
+        from: smtpUser,
         to: params.to,
         subject: params.subject,
         html: params.html,
