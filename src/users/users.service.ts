@@ -71,6 +71,7 @@ export class UsersService {
       } catch {
         err(HttpStatus.INTERNAL_SERVER_ERROR, 'INTERNAL', 'Unable to send SMS right now.');
       }
+      await this.otp.recordSuccessfulOtpDelivery('verify-phone', body.phoneNumber);
       return { ok: true, expiresAt: expiresAt.toISOString() };
     } catch (e) {
       if (e instanceof Error && e.message === 'RATE_LIMIT_OTP') {

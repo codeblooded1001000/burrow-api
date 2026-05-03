@@ -61,7 +61,6 @@ export class AuthService {
   async signupRequestOtp(dto: SignupRequestOtpBodyDto): Promise<{ ok: true; expiresAt: string; resendAvailableAt: string }> {
     const { email } = dto;
     const domainResult = this.domain.checkSignupDomain(email);
-    console.log('domainResult', domainResult);
     if (domainResult === 'block') {
       err(HttpStatus.BAD_REQUEST, 'BLOCKED_DOMAIN', 'Personal email domains are not supported. Please use your work email.');
     }
@@ -77,6 +76,7 @@ export class AuthService {
     try {
       const { plainOtp, expiresAt, resendAvailableAt } = await this.otp.issueOtp('signup', email);
       await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'signup' });
+      await this.otp.recordSuccessfulOtpDelivery('signup', email);
       return {
         ok: true,
         expiresAt: expiresAt.toISOString(),
@@ -237,6 +237,7 @@ export class AuthService {
     try {
       const { plainOtp, expiresAt, resendAvailableAt } = await this.otp.issueOtp('recover-email', email);
       await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'recover' });
+      await this.otp.recordSuccessfulOtpDelivery('recover-email', email);
       return {
         ok: true,
         expiresAt: expiresAt.toISOString(),
@@ -307,6 +308,7 @@ export class AuthService {
       } catch {
         err(HttpStatus.INTERNAL_SERVER_ERROR, 'INTERNAL', 'Unable to send SMS right now.');
       }
+      await this.otp.recordSuccessfulOtpDelivery('recover-phone', dto.phoneNumber);
       return {
         ok: true,
         expiresAt: expiresAt.toISOString(),
@@ -373,6 +375,7 @@ export class AuthService {
       600,
     );
     await this.mail.sendOtp({ to: dto.newEmail, otp: plainOtp, purpose: 'email-change' });
+    await this.otp.recordSuccessfulOtpDelivery('email-rebind', dto.newEmail);
     return {
       ok: true,
       expiresAt: expiresAt.toISOString(),

@@ -116,9 +116,12 @@ export class OtpService {
       await client.expire(key, OTP_TTL_SEC);
     }
 
-    await this.recordOtpRequestEvent(purpose, identifier);
-
     return { plainOtp: plain, expiresAt, resendAvailableAt };
+  }
+
+  /** Call after email/SMS delivery succeeds so failed sends do not consume the hourly OTP quota. */
+  async recordSuccessfulOtpDelivery(purpose: OtpPurpose, identifier: string): Promise<void> {
+    await this.recordOtpRequestEvent(purpose, identifier);
   }
 
   async verifyOtp(purpose: OtpPurpose, identifier: string, plain: string): Promise<void> {
