@@ -20,7 +20,7 @@ export class NodemailerMailService extends MailService {
   }
 
   async send(params: MailSendParams): Promise<void> {
-    const from = this.config.get('EMAIL_FROM', { infer: true });
+    const from = this.config.get('SMTP_USER', { infer: true });
     await this.transporter.sendMail({
       from,
       to: params.to,
