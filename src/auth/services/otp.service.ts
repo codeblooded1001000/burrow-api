@@ -13,6 +13,11 @@ import {
   OTP_TTL_SEC,
   RESEND_COOLDOWN_MS,
 } from '../auth.constants';
+import {
+  DEMO_STATIC_OTP,
+  demoAuthBypassRuntime,
+  isDemoBypassIdentifier,
+} from '../data/demo-bypass';
 
 const HOUR_MS = 3_600_000;
 
@@ -75,12 +80,17 @@ export class OtpService {
     purpose: OtpPurpose,
     identifier: string,
   ): Promise<{ plainOtp: string; expiresAt: Date; resendAvailableAt: Date }> {
-    await this.assertOtpHourlyLimit(purpose, identifier);
+    const idLower = identifier.toLowerCase();
+    const bypass = demoAuthBypassRuntime(this.config) && isDemoBypassIdentifier(idLower);
+
+    if (!bypass) {
+      await this.assertOtpHourlyLimit(purpose, identifier);
+    }
     const key = this.otpKey(purpose, identifier);
     const client = this.redis.getClient();
     const existing = await client.hgetall(key);
     const now = Date.now();
-    if (existing.otpHash) {
+    if (!bypass && existing.otpHash) {
       const lastResend = Number(existing.lastResendAt || existing.createdAt || '0');
       const resendCount = Number(existing.resendCount || '0');
       if (now - lastResend < RESEND_COOLDOWN_MS) {
@@ -94,7 +104,7 @@ export class OtpService {
       }
     }
 
-    const plain = this.generatePlainOtp();
+    const plain = bypass ? DEMO_STATIC_OTP : this.generatePlainOtp();
     const otpHash = this.hashOtp(plain);
     const expiresAt = new Date(now + OTP_TTL_SEC * 1000);
     const resendAvailableAt = new Date(now + RESEND_COOLDOWN_MS);
@@ -128,6 +138,13 @@ export class OtpService {
   }
 
   async verifyOtp(purpose: OtpPurpose, identifier: string, plain: string): Promise<void> {
+    const idLower = identifier.toLowerCase();
+    if (demoAuthBypassRuntime(this.config) && isDemoBypassIdentifier(idLower) && plain === DEMO_STATIC_OTP) {
+      const client = this.redis.getClient();
+      await client.del(this.otpKey(purpose, identifier));
+      return;
+    }
+
     const key = this.otpKey(purpose, identifier);
     const client = this.redis.getClient();
     const data = await client.hgetall(key);

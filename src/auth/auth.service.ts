@@ -8,6 +8,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import { MailService } from '../mail/mail.service';
 import { OTP_TTL_SEC } from './auth.constants';
+import { shouldSkipDemoOutboundMail } from './data/demo-bypass';
 import { DomainService } from './services/domain.service';
 import { OtpService } from './services/otp.service';
 import { PinService } from './services/pin.service';
@@ -76,8 +77,10 @@ export class AuthService {
     }
     try {
       const { plainOtp, expiresAt, resendAvailableAt } = await this.otp.issueOtp('signup', email);
-      await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'signup' });
-      await this.otp.recordSuccessfulOtpDelivery('signup', email);
+      if (!shouldSkipDemoOutboundMail(this.config, email)) {
+        await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'signup' });
+        await this.otp.recordSuccessfulOtpDelivery('signup', email);
+      }
       return {
         ok: true,
         expiresAt: expiresAt.toISOString(),
@@ -237,8 +240,10 @@ export class AuthService {
     }
     try {
       const { plainOtp, expiresAt, resendAvailableAt } = await this.otp.issueOtp('recover-email', email);
-      await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'recover' });
-      await this.otp.recordSuccessfulOtpDelivery('recover-email', email);
+      if (!shouldSkipDemoOutboundMail(this.config, email)) {
+        await this.mail.sendOtp({ to: email, otp: plainOtp, purpose: 'recover' });
+        await this.otp.recordSuccessfulOtpDelivery('recover-email', email);
+      }
       return {
         ok: true,
         expiresAt: expiresAt.toISOString(),
@@ -375,8 +380,10 @@ export class AuthService {
       JSON.stringify({ userId, recoverySha }),
       OTP_TTL_SEC,
     );
-    await this.mail.sendOtp({ to: dto.newEmail, otp: plainOtp, purpose: 'email-change' });
-    await this.otp.recordSuccessfulOtpDelivery('email-rebind', dto.newEmail);
+    if (!shouldSkipDemoOutboundMail(this.config, dto.newEmail)) {
+      await this.mail.sendOtp({ to: dto.newEmail, otp: plainOtp, purpose: 'email-change' });
+      await this.otp.recordSuccessfulOtpDelivery('email-rebind', dto.newEmail);
+    }
     return {
       ok: true,
       expiresAt: expiresAt.toISOString(),

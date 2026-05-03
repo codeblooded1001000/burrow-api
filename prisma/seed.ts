@@ -9,6 +9,7 @@ import {
   SmokingPref,
   WorkSchedule,
 } from '@prisma/client';
+import { DEMO_STATIC_PIN } from '../src/auth/data/demo-bypass';
 import { computeProfileCompletion } from '../src/profiles/profile-completion';
 import { spreadListingLatLng } from './listing-lat-lng-dev';
 import { listingPhotosForListerIndex } from './seed-listing-photos';
@@ -20,21 +21,34 @@ const DEV_SEED_PIN = '847291';
 
 type AllowlistRow = { domain: string; companyName: string };
 
+/** Parallel upserts per batch (hundreds of serial round-trips look like a hang on slow DBs). */
+const ALLOWLIST_UPSERT_CONCURRENCY = 12;
+
 async function seedAllowlist(): Promise<void> {
   const filePath = join(__dirname, '..', 'src', 'auth', 'data', 'company-allowlist.json');
   const raw = readFileSync(filePath, 'utf8') as string;
   const rows = JSON.parse(raw) as AllowlistRow[];
-  for (const row of rows) {
-    const domain = row.domain.toLowerCase();
-    await prisma.companyAllowlist.upsert({
-      where: { domain },
-      create: {
-        domain,
-        companyName: row.companyName,
-        isActive: true,
-      },
-      update: { companyName: row.companyName, isActive: true },
-    });
+  process.stdout.write(
+    `[seed] Company allowlist: upserting ${rows.length} domains (${ALLOWLIST_UPSERT_CONCURRENCY} concurrent)…\n`,
+  );
+  for (let i = 0; i < rows.length; i += ALLOWLIST_UPSERT_CONCURRENCY) {
+    const chunk = rows.slice(i, i + ALLOWLIST_UPSERT_CONCURRENCY);
+    await Promise.all(
+      chunk.map((row) => {
+        const domain = row.domain.toLowerCase();
+        return prisma.companyAllowlist.upsert({
+          where: { domain },
+          create: {
+            domain,
+            companyName: row.companyName,
+            isActive: true,
+          },
+          update: { companyName: row.companyName, isActive: true },
+        });
+      }),
+    );
+    const done = Math.min(i + chunk.length, rows.length);
+    process.stdout.write(`[seed] Allowlist ${done}/${rows.length}\n`);
   }
   process.stdout.write(`[seed] Company allowlist: ${rows.length} domains upserted.\n`);
 }
@@ -229,9 +243,165 @@ async function seedDevUsers(): Promise<void> {
   );
 }
 
+/** Alt Mobility demo accounts (static OTP `347612` when `DEMO_AUTH_BYPASS` / dev — see demo-bypass.ts). */
+async function seedAltMobilityDemoAccounts(): Promise<void> {
+  const allow =
+    process.env.NODE_ENV === 'development' || process.env.SEED_DEMO_ACCOUNTS === 'true';
+  if (!allow) {
+    process.stdout.write(
+      '[seed] Skipping Alt Mobility demo accounts (set SEED_DEMO_ACCOUNTS=true, or run with NODE_ENV=development).\n',
+    );
+    return;
+  }
+
+  const pinHash = await argon2.hash(DEMO_STATIC_PIN, {
+    type: argon2.argon2id,
+    memoryCost: 65536,
+    timeCost: 3,
+    parallelism: 4,
+  });
+
+  const companyName = 'Alt Mobility';
+  const demoUsers: { email: string; role: Role; fullName: string; withListing: boolean }[] = [
+    {
+      email: 'pushpander@alt-mobility.com',
+      role: Role.BOTH,
+      fullName: 'Pushpander (demo)',
+      withListing: true,
+    },
+    {
+      email: 'prince@alt-mobility.com',
+      role: Role.SEEKER,
+      fullName: 'Prince (demo)',
+      withListing: false,
+    },
+  ];
+
+  let listerIdx = 0;
+  for (let i = 0; i < demoUsers.length; i += 1) {
+    const cfg = demoUsers[i] ?? demoUsers[0];
+    const user = await prisma.user.upsert({
+      where: { email: cfg.email },
+      create: {
+        email: cfg.email,
+        emailVerified: true,
+        pinHash,
+        role: cfg.role,
+        companyName,
+        companyVerified: true,
+      },
+      update: {
+        emailVerified: true,
+        pinHash,
+        role: cfg.role,
+        companyName,
+        companyVerified: true,
+        deletedAt: null,
+      },
+    });
+
+    const bio =
+      'Demo account for Alt Mobility. OTP 347612 (dev / DEMO_AUTH_BYPASS); PIN 347612 when seeded.';
+    const completion = computeProfileCompletion(
+      {
+        photoUrl: SEED_PHOTO,
+        bio,
+        profession: 'Product',
+        budgetMin: 15000,
+        budgetMax: 40000,
+        moveInDate: new Date('2026-06-01T00:00:00.000Z'),
+        lifestyleTags: ['Chill'],
+      },
+      { phoneVerified: false },
+    );
+
+    await prisma.profile.upsert({
+      where: { userId: user.id },
+      create: {
+        userId: user.id,
+        fullName: cfg.fullName,
+        age: 28,
+        gender: Gender.MAN,
+        photoUrl: SEED_PHOTO,
+        bio,
+        profession: 'Product',
+        workSchedule: WorkSchedule.FLEXIBLE,
+        budgetMin: 15000,
+        budgetMax: 40000,
+        moveInDate: new Date('2026-06-01T00:00:00.000Z'),
+        preferredLocalities: ['Gurugram', 'Cyber City'],
+        lifestyleTags: ['Chill'],
+        smokingPref: SmokingPref.NON_SMOKER,
+        foodPref: FoodPref.NON_VEG_OK,
+        profileCompletion: completion,
+      },
+      update: {
+        fullName: cfg.fullName,
+        photoUrl: SEED_PHOTO,
+        bio,
+        profession: 'Product',
+        workSchedule: WorkSchedule.FLEXIBLE,
+        budgetMin: 15000,
+        budgetMax: 40000,
+        moveInDate: new Date('2026-06-01T00:00:00.000Z'),
+        preferredLocalities: ['Gurugram', 'Cyber City'],
+        lifestyleTags: ['Chill'],
+        smokingPref: SmokingPref.NON_SMOKER,
+        foodPref: FoodPref.NON_VEG_OK,
+        profileCompletion: completion,
+        deletedAt: null,
+      },
+    });
+
+    if (cfg.withListing) {
+      const photos = listingPhotosForListerIndex(listerIdx);
+      const { lat, lng } = spreadListingLatLng(i, demoUsers.length);
+      listerIdx += 1;
+      await prisma.listing.upsert({
+        where: { userId: user.id },
+        create: {
+          userId: user.id,
+          localityName: 'Cyber City',
+          lat,
+          lng,
+          bhk: 2,
+          totalRent: 45000,
+          yourShare: 22000,
+          availableFrom: new Date('2026-06-01T00:00:00.000Z'),
+          photos,
+          description: 'Demo listing for Alt Mobility.',
+          amenities: ['Wi-Fi', 'Parking'],
+          preferredGender: Gender.PREFER_NOT,
+          preferredProfessions: ['Engineer'],
+          smokingAllowed: false,
+          foodPref: FoodPref.NON_VEG_OK,
+          workSchedulePref: WorkSchedule.FLEXIBLE,
+          isActive: true,
+        },
+        update: {
+          lat,
+          lng,
+          photos,
+          isActive: true,
+          deletedAt: null,
+        },
+      });
+    } else {
+      await prisma.listing.deleteMany({ where: { userId: user.id } });
+    }
+  }
+
+  process.stdout.write(
+    `[seed] Alt Mobility demo: ${demoUsers.map((u) => u.email).join(', ')} — PIN ${DEMO_STATIC_PIN}; OTP ${DEMO_STATIC_PIN} with mail bypass (dev or DEMO_AUTH_BYPASS=true).\n`,
+  );
+}
+
 async function main(): Promise<void> {
+  process.stdout.write('[seed] Starting (allowlist → dev users → Alt Mobility demo).\n');
   await seedAllowlist();
   await seedDevUsers();
+  await seedAltMobilityDemoAccounts();
+  process.stdout.write('[seed] Done.\n');
 }
 
 void main()

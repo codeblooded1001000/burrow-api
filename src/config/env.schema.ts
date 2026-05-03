@@ -55,6 +55,11 @@ export const envSchema = z
       .enum(['true', 'false'])
       .optional()
       .transform((v) => v === 'true'),
+    /**
+     * When set to `true` in production, allowlisted demo emails use a static OTP and skip outbound mail.
+     * In development, bypass is always on for those emails. Never enable on a real production tenant.
+     */
+    DEMO_AUTH_BYPASS: optionalAtBoot,
   })
   .superRefine((data, ctx) => {
     if (data.NODE_ENV === 'production' && data.CORS_ORIGIN.length === 0) {
