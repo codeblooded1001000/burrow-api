@@ -18,6 +18,25 @@ export interface SessionPayload {
 export class SessionService {
   constructor(private readonly config: ConfigService<Env, true>) {}
 
+  /**
+   * UI (e.g. Vercel) and API on different registrable domains need `SameSite=None; Secure` (+ optional
+   * `Partitioned`). Some PaaS images do not set `NODE_ENV=production`; use `SESSION_CROSS_SITE_COOKIES=true`.
+   */
+  private useCrossSiteSessionCookie(): boolean {
+    const raw = this.config.get('SESSION_CROSS_SITE_COOKIES', { infer: true });
+    const flag = raw.toLowerCase();
+    if (flag === 'true') return true;
+    if (flag === 'false') return false;
+    return this.config.get('NODE_ENV', { infer: true }) === 'production';
+  }
+
+  private usePartitionedSessionCookie(): boolean {
+    if (!this.useCrossSiteSessionCookie()) return false;
+    const raw = this.config.get('SESSION_COOKIE_PARTITIONED', { infer: true });
+    if (raw.toLowerCase() === 'false') return false;
+    return true;
+  }
+
   private requireJwtSecret(): string {
     const s = this.config.get('JWT_SECRET', { infer: true });
     if (!s) throw new Error('JWT_SECRET is not configured');
@@ -82,28 +101,31 @@ export class SessionService {
   }
 
   /**
-   * Production deploys use a separate UI origin (e.g. Vercel) and API host; that is cross-site.
-   * `SameSite=Lax` cookies are not sent on `fetch` from the UI to the API, so sessions never stick.
-   * `SameSite=None` + `Secure` is required for credentialed cross-origin requests.
+   * Cross-site UI ↔ API: `SameSite=None; Secure` (+ `Partitioned` when enabled) so `fetch(..., credentials)`
+   * sends the session cookie. See `useCrossSiteSessionCookie` and `SESSION_CROSS_SITE_COOKIES`.
    */
   setSessionCookie(res: Response, token: string): void {
-    const isProd = this.config.get('NODE_ENV', { infer: true }) === 'production';
+    const crossSite = this.useCrossSiteSessionCookie();
+    const partitioned = this.usePartitionedSessionCookie();
     res.cookie(SESSION_COOKIE_NAME, token, {
       httpOnly: true,
-      sameSite: isProd ? 'none' : 'lax',
-      secure: isProd,
+      sameSite: crossSite ? 'none' : 'lax',
+      secure: crossSite,
       path: '/',
       maxAge: 30 * 24 * 60 * 60 * 1000,
+      ...(partitioned ? { partitioned: true } : {}),
     });
   }
 
   clearSessionCookie(res: Response): void {
-    const isProd = this.config.get('NODE_ENV', { infer: true }) === 'production';
+    const crossSite = this.useCrossSiteSessionCookie();
+    const partitioned = this.usePartitionedSessionCookie();
     res.clearCookie(SESSION_COOKIE_NAME, {
       httpOnly: true,
-      sameSite: isProd ? 'none' : 'lax',
-      secure: isProd,
+      sameSite: crossSite ? 'none' : 'lax',
+      secure: crossSite,
       path: '/',
+      ...(partitioned ? { partitioned: true } : {}),
     });
   }
 

@@ -60,7 +60,12 @@ export function configureHttpApp(app: INestApplication): void {
   app.setGlobalPrefix('api/v1');
   app.useGlobalPipes(createGlobalZodPipe());
   app.use(cookieParser());
-  app.use(helmet());
+  app.use(
+    helmet({
+      /** Default `same-origin` blocks cross-origin browsers from using credentialed API responses. */
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+    }),
+  );
   const corsOrigin = config.get('CORS_ORIGIN', { infer: true });
   const allowlistRaw = corsOrigin.length > 0 ? corsOrigin : DEFAULT_CORS_ORIGIN;
   app.enableCors({

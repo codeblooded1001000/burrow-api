@@ -60,6 +60,17 @@ export const envSchema = z
      * In development, bypass is always on for those emails. Never enable on a real production tenant.
      */
     DEMO_AUTH_BYPASS: optionalAtBoot,
+    /**
+     * Force `SameSite=None; Secure` session cookies (required when UI and API are on different sites).
+     * When unset: enabled only if `NODE_ENV=production`. Set `true` on hosts that omit NODE_ENV=production.
+     * Set `false` only for same-origin deployments (UI and API share one site).
+     */
+    SESSION_CROSS_SITE_COOKIES: optionalAtBoot,
+    /**
+     * When `false`, omit the `Partitioned` cookie attribute. Default: set Partitioned when cross-site
+     * cookies are on (helps Chrome third‑party cookie rules). Turn off if a client mishandles it.
+     */
+    SESSION_COOKIE_PARTITIONED: optionalAtBoot,
   })
   .superRefine((data, ctx) => {
     if (data.NODE_ENV === 'production' && data.CORS_ORIGIN.length === 0) {
