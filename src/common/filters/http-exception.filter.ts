@@ -1,6 +1,6 @@
 import { type ArgumentsHost, Catch, type ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import type { Response } from 'express';
+import type { Request, Response } from 'express';
 import { ZodValidationException } from 'nestjs-zod';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 
@@ -27,6 +27,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost): void {
     const ctx = host.switchToHttp();
     const res = ctx.getResponse<Response>();
+    const req = ctx.getRequest<Request>();
 
     if (exception instanceof ZodValidationException) {
       const zodError = exception.getZodError();
@@ -81,7 +82,24 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
     }
 
-    this.logger.error({ err: exception }, 'unhandled exception');
+    if (exception instanceof Error && exception.message === 'MAIL_SEND_FAILED') {
+      this.logger.warn(
+        { err: exception, method: req.method, path: req.originalUrl ?? req.url },
+        'mail delivery failed',
+      );
+      res.status(HttpStatus.SERVICE_UNAVAILABLE).json({
+        error: {
+          code: 'MAIL_UNAVAILABLE',
+          message: 'We could not send the email right now. Please try again in a few minutes.',
+        },
+      });
+      return;
+    }
+
+    this.logger.error(
+      { err: exception, method: req.method, path: req.originalUrl ?? req.url },
+      'unhandled exception',
+    );
     res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
       error: {
         code: 'INTERNAL',
