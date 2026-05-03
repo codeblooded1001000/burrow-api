@@ -4,14 +4,17 @@ import { ConfigService } from '@nestjs/config';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import type { Env } from '../../config/env.schema';
 import { RedisService } from '../../redis/redis.service';
-import { OTP_PURPOSES, type OtpPurpose } from '../auth.constants';
+import {
+  MAX_OTP_REQUESTS_PER_HOUR,
+  MAX_RESENDS,
+  MAX_VERIFY_ATTEMPTS,
+  OTP_PURPOSES,
+  type OtpPurpose,
+  OTP_TTL_SEC,
+  RESEND_COOLDOWN_MS,
+} from '../auth.constants';
 
-const OTP_TTL_SEC = 600;
-const RESEND_COOLDOWN_MS = 60_000;
-const MAX_RESENDS = 3;
-const MAX_OTP_REQUESTS_PER_HOUR = 5;
 const HOUR_MS = 3_600_000;
-const MAX_VERIFY_ATTEMPTS = 3;
 
 @Injectable()
 export class OtpService {

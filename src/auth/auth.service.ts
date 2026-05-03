@@ -7,6 +7,7 @@ import type { Env } from '../config/env.schema';
 import { PrismaService } from '../prisma/prisma.service';
 import { RedisService } from '../redis/redis.service';
 import { MailService } from '../mail/mail.service';
+import { OTP_TTL_SEC } from './auth.constants';
 import { DomainService } from './services/domain.service';
 import { OtpService } from './services/otp.service';
 import { PinService } from './services/pin.service';
@@ -372,7 +373,7 @@ export class AuthService {
     await this.redis.set(
       this.emailRebindMetaKey(dto.newEmail),
       JSON.stringify({ userId, recoverySha }),
-      600,
+      OTP_TTL_SEC,
     );
     await this.mail.sendOtp({ to: dto.newEmail, otp: plainOtp, purpose: 'email-change' });
     await this.otp.recordSuccessfulOtpDelivery('email-rebind', dto.newEmail);
