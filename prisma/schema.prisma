@@ -1,0 +1,286 @@
+// Burrow core data model — see BURROW_MASTER_SPEC.md
+// Conversation pairs: application invariant participantAUserId < participantBUserId (lexicographic CUID order).
+// See @@unique below and src/common/types/conversation-order.ts
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ONBOARDING
+  LISTER
+  SEEKER
+  BOTH
+}
+
+enum Gender {
+  WOMAN
+  MAN
+  PREFER_NOT
+}
+
+enum WorkSchedule {
+  HOME
+  OFFICE
+  FLEXIBLE
+}
+
+enum SmokingPref {
+  NON_SMOKER
+  SMOKER
+  FLEXIBLE
+}
+
+enum FoodPref {
+  PURE_VEG
+  EGGETARIAN
+  NON_VEG_OK
+}
+
+enum ReportCategory {
+  HARASSMENT
+  FAKE_PROFILE
+  SCAM_BROKER
+  INAPPROPRIATE
+  OTHER
+}
+
+enum ReportStatus {
+  PENDING
+  REVIEWING
+  RESOLVED
+  DISMISSED
+}
+
+enum NumberShareStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
+enum ConversationStatus {
+  PENDING
+  ACTIVE
+  REJECTED
+  ARCHIVED
+}
+
+enum ManualReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  emailVerified   Boolean   @default(false)
+  pinHash         String
+  phoneNumber     String?   @unique
+  phoneVerified   Boolean   @default(false)
+  role            Role
+  companyName     String
+  companyVerified Boolean   @default(false)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  profile                  Profile?
+  listing                  Listing?
+  conversationsAsA        Conversation[]        @relation("ConversationParticipantA")
+  conversationsAsB        Conversation[]        @relation("ConversationParticipantB")
+  conversationsInitiated  Conversation[]        @relation("ConversationInitiatedBy")
+  conversationsRejectedBy Conversation[]        @relation("ConversationRejectedBy")
+  messagesSent             Message[]             @relation("MessageSender")
+  numberShareRequests      NumberShareRequest[]  @relation("NumberShareRequester")
+  blocksInitiated          Block[]               @relation("Blocker")
+  blocksReceived           Block[]               @relation("Blocked")
+  reportsMade              Report[]              @relation("Reporter")
+  reportsReceived          Report[]              @relation("Reported")
+
+  @@map("users")
+}
+
+model Profile {
+  id                  String        @id @default(cuid())
+  userId              String        @unique
+  fullName            String
+  age                 Int
+  gender              Gender
+  photoUrl            String?
+  bio                 String
+  profession          String?
+  workSchedule        WorkSchedule?
+  budgetMin           Int?
+  budgetMax           Int?
+  moveInDate          DateTime?
+  preferredLocalities String[]
+  lifestyleTags       String[]
+  smokingPref         SmokingPref?
+  foodPref            FoodPref?
+  officeLat           Float?
+  officeLng           Float?
+  profileCompletion   Int
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  deletedAt           DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([createdAt])
+  @@map("profiles")
+}
+
+model Listing {
+  id                   String        @id @default(cuid())
+  userId               String        @unique
+  localityName         String
+  lat                  Float
+  lng                  Float
+  bhk                  Int
+  totalRent            Int
+  yourShare            Int
+  availableFrom        DateTime
+  photos               String[]
+  description          String
+  amenities            String[]
+  preferredGender      Gender
+  preferredProfessions String[]
+  smokingAllowed       Boolean
+  foodPref             FoodPref?
+  workSchedulePref     WorkSchedule?
+  isActive             Boolean       @default(true)
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+  deletedAt            DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([localityName, isActive])
+  @@index([userId, isActive])
+  @@index([availableFrom, isActive])
+  @@index([createdAt, isActive])
+  @@map("listings")
+}
+
+model Conversation {
+  id                 String             @id @default(cuid())
+  participantAUserId String
+  participantBUserId String
+  lastMessageAt      DateTime?
+  numbersShared      Boolean            @default(false)
+  createdAt          DateTime           @default(now())
+  status             ConversationStatus @default(PENDING)
+  initiatedByUserId  String
+  acceptedAt         DateTime?
+  rejectedAt         DateTime?
+  rejectedByUserId   String?
+  archivedAt         DateTime?
+  rejectReason       String?            @db.VarChar(200)
+
+  participantA User  @relation("ConversationParticipantA", fields: [participantAUserId], references: [id], onDelete: Cascade)
+  participantB User  @relation("ConversationParticipantB", fields: [participantBUserId], references: [id], onDelete: Cascade)
+  initiatedBy  User  @relation("ConversationInitiatedBy", fields: [initiatedByUserId], references: [id], onDelete: Cascade)
+  rejectedBy   User? @relation("ConversationRejectedBy", fields: [rejectedByUserId], references: [id], onDelete: SetNull)
+
+  messages            Message[]
+  numberShareRequests NumberShareRequest[]
+  reports             Report[]
+
+  @@unique([participantAUserId, participantBUserId])
+  @@index([participantAUserId, lastMessageAt(sort: Desc), id(sort: Desc)])
+  @@index([participantBUserId, lastMessageAt(sort: Desc), id(sort: Desc)])
+  @@index([status, createdAt])
+  @@map("conversations")
+}
+
+model Message {
+  id             String    @id @default(cuid())
+  conversationId String
+  senderId       String
+  body           String
+  createdAt      DateTime  @default(now())
+  readAt         DateTime?
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender       User         @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+model NumberShareRequest {
+  id                String              @id @default(cuid())
+  conversationId    String
+  requestedByUserId String
+  status            NumberShareStatus    @default(PENDING)
+  createdAt         DateTime            @default(now())
+  respondedAt       DateTime?
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  requestedBy  User         @relation("NumberShareRequester", fields: [requestedByUserId], references: [id], onDelete: Cascade)
+
+  @@map("number_share_requests")
+}
+
+model Block {
+  id            String   @id @default(cuid())
+  blockerUserId String
+  blockedUserId String
+  createdAt     DateTime @default(now())
+
+  blocker User @relation("Blocker", fields: [blockerUserId], references: [id], onDelete: Cascade)
+  blocked User @relation("Blocked", fields: [blockedUserId], references: [id], onDelete: Cascade)
+
+  @@unique([blockerUserId, blockedUserId])
+  @@index([blockerUserId])
+  @@index([blockedUserId])
+  @@map("blocks")
+}
+
+model Report {
+  id              String          @id @default(cuid())
+  reporterUserId  String
+  reportedUserId  String
+  conversationId  String?
+  category        ReportCategory
+  detail          String
+  status          ReportStatus    @default(PENDING)
+  createdAt       DateTime        @default(now())
+  resolvedAt      DateTime?
+  resolverNotes   String?
+
+  reporter     User          @relation("Reporter", fields: [reporterUserId], references: [id], onDelete: Cascade)
+  reported     User          @relation("Reported", fields: [reportedUserId], references: [id], onDelete: Cascade)
+  conversation Conversation? @relation(fields: [conversationId], references: [id], onDelete: SetNull)
+
+  @@map("reports")
+}
+
+model CompanyAllowlist {
+  id          String   @id @default(cuid())
+  domain      String   @unique
+  companyName String
+  isActive    Boolean  @default(true)
+  addedAt     DateTime @default(now())
+
+  @@map("company_allowlist")
+}
+
+model ManualReviewRequest {
+  id           String               @id @default(cuid())
+  email        String
+  companyClaim String
+  status       ManualReviewStatus   @default(PENDING)
+  createdAt    DateTime             @default(now())
+  reviewedAt   DateTime?
+  rejectReason String?
+
+  @@map("manual_review_requests")
+}

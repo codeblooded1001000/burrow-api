@@ -1,0 +1,1866 @@
+[
+  {
+    "domain": "deloitte.com",
+    "companyName": "Deloitte"
+  },
+  {
+    "domain": "ey.com",
+    "companyName": "EY"
+  },
+  {
+    "domain": "kpmg.com",
+    "companyName": "KPMG"
+  },
+  {
+    "domain": "kpmg.co.in",
+    "companyName": "KPMG India"
+  },
+  {
+    "domain": "pwc.com",
+    "companyName": "PwC"
+  },
+  {
+    "domain": "bain.com",
+    "companyName": "Bain & Company"
+  },
+  {
+    "domain": "bcg.com",
+    "companyName": "Boston Consulting Group"
+  },
+  {
+    "domain": "mckinsey.com",
+    "companyName": "McKinsey & Company"
+  },
+  {
+    "domain": "genpact.com",
+    "companyName": "Genpact"
+  },
+  {
+    "domain": "cognizant.com",
+    "companyName": "Cognizant"
+  },
+  {
+    "domain": "accenture.com",
+    "companyName": "Accenture"
+  },
+  {
+    "domain": "accenture.in",
+    "companyName": "Accenture India"
+  },
+  {
+    "domain": "infosys.com",
+    "companyName": "Infosys"
+  },
+  {
+    "domain": "tcs.com",
+    "companyName": "Tata Consultancy Services"
+  },
+  {
+    "domain": "wipro.com",
+    "companyName": "Wipro"
+  },
+  {
+    "domain": "blinkit.com",
+    "companyName": "Blinkit"
+  },
+  {
+    "domain": "swiggy.in",
+    "companyName": "Swiggy"
+  },
+  {
+    "domain": "zomato.com",
+    "companyName": "Zomato"
+  },
+  {
+    "domain": "paytm.com",
+    "companyName": "Paytm"
+  },
+  {
+    "domain": "razorpay.com",
+    "companyName": "Razorpay"
+  },
+  {
+    "domain": "cred.club",
+    "companyName": "CRED"
+  },
+  {
+    "domain": "groww.in",
+    "companyName": "Groww"
+  },
+  {
+    "domain": "zerodha.com",
+    "companyName": "Zerodha"
+  },
+  {
+    "domain": "flipkart.com",
+    "companyName": "Flipkart"
+  },
+  {
+    "domain": "amazon.com",
+    "companyName": "Amazon"
+  },
+  {
+    "domain": "amazon.in",
+    "companyName": "Amazon India"
+  },
+  {
+    "domain": "microsoft.com",
+    "companyName": "Microsoft"
+  },
+  {
+    "domain": "google.com",
+    "companyName": "Google"
+  },
+  {
+    "domain": "meta.com",
+    "companyName": "Meta"
+  },
+  {
+    "domain": "apple.com",
+    "companyName": "Apple"
+  },
+  {
+    "domain": "americanexpress.com",
+    "companyName": "American Express"
+  },
+  {
+    "domain": "jpmchase.com",
+    "companyName": "JPMorgan Chase"
+  },
+  {
+    "domain": "goldmansachs.com",
+    "companyName": "Goldman Sachs"
+  },
+  {
+    "domain": "morganstanley.com",
+    "companyName": "Morgan Stanley"
+  },
+  {
+    "domain": "zsassociates.com",
+    "companyName": "ZS Associates"
+  },
+  {
+    "domain": "sprinklr.com",
+    "companyName": "Sprinklr"
+  },
+  {
+    "domain": "salesforce.com",
+    "companyName": "Salesforce"
+  },
+  {
+    "domain": "adobe.com",
+    "companyName": "Adobe"
+  },
+  {
+    "domain": "atlassian.com",
+    "companyName": "Atlassian"
+  },
+  {
+    "domain": "makemytrip.com",
+    "companyName": "MakeMyTrip"
+  },
+  {
+    "domain": "oyo.com",
+    "companyName": "OYO"
+  },
+  {
+    "domain": "ola.com",
+    "companyName": "Ola"
+  },
+  {
+    "domain": "uber.com",
+    "companyName": "Uber"
+  },
+  {
+    "domain": "byjus.com",
+    "companyName": "BYJU'S"
+  },
+  {
+    "domain": "unacademy.com",
+    "companyName": "Unacademy"
+  },
+  {
+    "domain": "vedantu.com",
+    "companyName": "Vedantu"
+  },
+  {
+    "domain": "hcl.com",
+    "companyName": "HCL"
+  },
+  {
+    "domain": "hcltech.com",
+    "companyName": "HCLTech"
+  },
+  {
+    "domain": "mindtree.com",
+    "companyName": "Mindtree"
+  },
+  {
+    "domain": "ltimindtree.com",
+    "companyName": "LTIMindtree"
+  },
+  {
+    "domain": "persistent.com",
+    "companyName": "Persistent Systems"
+  },
+  {
+    "domain": "mphasis.com",
+    "companyName": "Mphasis"
+  },
+  {
+    "domain": "optum.com",
+    "companyName": "Optum"
+  },
+  {
+    "domain": "unitedhealthgroup.com",
+    "companyName": "UnitedHealth Group"
+  },
+  {
+    "domain": "phonepe.com",
+    "companyName": "PhonePe"
+  },
+  {
+    "domain": "policybazaar.com",
+    "companyName": "Policybazaar"
+  },
+  {
+    "domain": "pbpartners.in",
+    "companyName": "PB Partners"
+  },
+  {
+    "domain": "meesho.com",
+    "companyName": "Meesho"
+  },
+  {
+    "domain": "nykaa.com",
+    "companyName": "Nykaa"
+  },
+  {
+    "domain": "myntra.com",
+    "companyName": "Myntra"
+  },
+  {
+    "domain": "cleartrip.com",
+    "companyName": "Cleartrip"
+  },
+  {
+    "domain": "bookmyshow.com",
+    "companyName": "BookMyShow"
+  },
+  {
+    "domain": "redbus.in",
+    "companyName": "redBus"
+  },
+  {
+    "domain": "ixigo.com",
+    "companyName": "Ixigo"
+  },
+  {
+    "domain": "goibibo.com",
+    "companyName": "Goibibo"
+  },
+  {
+    "domain": "naukri.com",
+    "companyName": "Naukri"
+  },
+  {
+    "domain": "infoedge.in",
+    "companyName": "Info Edge"
+  },
+  {
+    "domain": "justdial.com",
+    "companyName": "Justdial"
+  },
+  {
+    "domain": "indiamart.com",
+    "companyName": "IndiaMART"
+  },
+  {
+    "domain": "zoho.com",
+    "companyName": "Zoho Corp"
+  },
+  {
+    "domain": "freshworks.com",
+    "companyName": "Freshworks"
+  },
+  {
+    "domain": "chargebee.com",
+    "companyName": "Chargebee"
+  },
+  {
+    "domain": "postman.com",
+    "companyName": "Postman"
+  },
+  {
+    "domain": "hasura.io",
+    "companyName": "Hasura"
+  },
+  {
+    "domain": "clevertap.com",
+    "companyName": "CleverTap"
+  },
+  {
+    "domain": "moengage.com",
+    "companyName": "MoEngage"
+  },
+  {
+    "domain": "browserstack.com",
+    "companyName": "BrowserStack"
+  },
+  {
+    "domain": "lambdatest.com",
+    "companyName": "LambdaTest"
+  },
+  {
+    "domain": "hackerrank.com",
+    "companyName": "HackerRank"
+  },
+  {
+    "domain": "interviewbit.com",
+    "companyName": "InterviewBit"
+  },
+  {
+    "domain": "scaler.com",
+    "companyName": "Scaler"
+  },
+  {
+    "domain": "codingninjas.com",
+    "companyName": "Coding Ninjas"
+  },
+  {
+    "domain": "newtonschool.co",
+    "companyName": "Newton School"
+  },
+  {
+    "domain": "upgrad.com",
+    "companyName": "upGrad"
+  },
+  {
+    "domain": "simplilearn.com",
+    "companyName": "Simplilearn"
+  },
+  {
+    "domain": "greatlearning.in",
+    "companyName": "Great Learning"
+  },
+  {
+    "domain": "timesinternet.in",
+    "companyName": "Times Internet"
+  },
+  {
+    "domain": "indiatimes.com",
+    "companyName": "IndiaTimes"
+  },
+  {
+    "domain": "economictimes.indiatimes.com",
+    "companyName": "The Economic Times"
+  },
+  {
+    "domain": "reliance.com",
+    "companyName": "Reliance Industries"
+  },
+  {
+    "domain": "jio.com",
+    "companyName": "Jio"
+  },
+  {
+    "domain": "ril.com",
+    "companyName": "Reliance"
+  },
+  {
+    "domain": "tatamotors.com",
+    "companyName": "Tata Motors"
+  },
+  {
+    "domain": "tataconsumer.com",
+    "companyName": "Tata Consumer"
+  },
+  {
+    "domain": "titan.co.in",
+    "companyName": "Titan"
+  },
+  {
+    "domain": "tatapower.com",
+    "companyName": "Tata Power"
+  },
+  {
+    "domain": "tatasteel.com",
+    "companyName": "Tata Steel"
+  },
+  {
+    "domain": "airtel.in",
+    "companyName": "Bharti Airtel"
+  },
+  {
+    "domain": "airtel.com",
+    "companyName": "Airtel"
+  },
+  {
+    "domain": "vodafoneidea.com",
+    "companyName": "Vodafone Idea"
+  },
+  {
+    "domain": "jiofiber.com",
+    "companyName": "JioFiber"
+  },
+  {
+    "domain": "icicibank.com",
+    "companyName": "ICICI Bank"
+  },
+  {
+    "domain": "hdfcbank.com",
+    "companyName": "HDFC Bank"
+  },
+  {
+    "domain": "kotak.com",
+    "companyName": "Kotak Mahindra Bank"
+  },
+  {
+    "domain": "axisbank.com",
+    "companyName": "Axis Bank"
+  },
+  {
+    "domain": "yesbank.in",
+    "companyName": "YES Bank"
+  },
+  {
+    "domain": "bandhanbank.com",
+    "companyName": "Bandhan Bank"
+  },
+  {
+    "domain": "idfcfirstbank.com",
+    "companyName": "IDFC FIRST Bank"
+  },
+  {
+    "domain": "indusind.com",
+    "companyName": "IndusInd Bank"
+  },
+  {
+    "domain": "federalbank.co.in",
+    "companyName": "Federal Bank"
+  },
+  {
+    "domain": "bajajfinserv.in",
+    "companyName": "Bajaj Finserv"
+  },
+  {
+    "domain": "bajajfinance.in",
+    "companyName": "Bajaj Finance"
+  },
+  {
+    "domain": "hdfc.com",
+    "companyName": "HDFC Ltd"
+  },
+  {
+    "domain": "licindia.in",
+    "companyName": "LIC"
+  },
+  {
+    "domain": "sbi.co.in",
+    "companyName": "State Bank of India"
+  },
+  {
+    "domain": "npci.org.in",
+    "companyName": "NPCI"
+  },
+  {
+    "domain": "payu.in",
+    "companyName": "PayU"
+  },
+  {
+    "domain": "cashfree.com",
+    "companyName": "Cashfree"
+  },
+  {
+    "domain": "pinelabs.com",
+    "companyName": "Pine Labs"
+  },
+  {
+    "domain": "billdesk.com",
+    "companyName": "BillDesk"
+  },
+  {
+    "domain": "razorpayx.com",
+    "companyName": "RazorpayX"
+  },
+  {
+    "domain": "growwwealth.in",
+    "companyName": "Groww Wealth"
+  },
+  {
+    "domain": "smallcase.com",
+    "companyName": "smallcase"
+  },
+  {
+    "domain": "kuvera.in",
+    "companyName": "Kuvera"
+  },
+  {
+    "domain": "indmoney.com",
+    "companyName": "INDmoney"
+  },
+  {
+    "domain": "etmoney.com",
+    "companyName": "ET Money"
+  },
+  {
+    "domain": "dream11.com",
+    "companyName": "Dream11"
+  },
+  {
+    "domain": "mpl.live",
+    "companyName": "MPL"
+  },
+  {
+    "domain": "games24x7.com",
+    "companyName": "Games24x7"
+  },
+  {
+    "domain": "nazara.com",
+    "companyName": "Nazara Technologies"
+  },
+  {
+    "domain": "jetspree.com",
+    "companyName": "JetSynthesys"
+  },
+  {
+    "domain": "sharechat.co",
+    "companyName": "ShareChat"
+  },
+  {
+    "domain": "mojapp.in",
+    "companyName": "Moj"
+  },
+  {
+    "domain": "dailyhunt.in",
+    "companyName": "Dailyhunt"
+  },
+  {
+    "domain": "inmobi.com",
+    "companyName": "InMobi"
+  },
+  {
+    "domain": "glance.com",
+    "companyName": "Glance"
+  },
+  {
+    "domain": "olaelectric.in",
+    "companyName": "Ola Electric"
+  },
+  {
+    "domain": "atherenergy.com",
+    "companyName": "Ather Energy"
+  },
+  {
+    "domain": "revoltmotors.com",
+    "companyName": "Revolt Motors"
+  },
+  {
+    "domain": "hero-motocorp.com",
+    "companyName": "Hero MotoCorp"
+  },
+  {
+    "domain": "bajajauto.com",
+    "companyName": "Bajaj Auto"
+  },
+  {
+    "domain": "tvsmotor.com",
+    "companyName": "TVS Motor"
+  },
+  {
+    "domain": "eicher.in",
+    "companyName": "Eicher Motors"
+  },
+  {
+    "domain": "maruti.co.in",
+    "companyName": "Maruti Suzuki"
+  },
+  {
+    "domain": "mahindra.com",
+    "companyName": "Mahindra Group"
+  },
+  {
+    "domain": "ashokleyland.com",
+    "companyName": "Ashok Leyland"
+  },
+  {
+    "domain": "nestle.in",
+    "companyName": "Nestlé India"
+  },
+  {
+    "domain": "hul.co.in",
+    "companyName": "Hindustan Unilever"
+  },
+  {
+    "domain": "itcportal.com",
+    "companyName": "ITC Limited"
+  },
+  {
+    "domain": "britannia.co.in",
+    "companyName": "Britannia"
+  },
+  {
+    "domain": "dabur.com",
+    "companyName": "Dabur"
+  },
+  {
+    "domain": "godrej.com",
+    "companyName": "Godrej"
+  },
+  {
+    "domain": "titancompany.in",
+    "companyName": "Titan Company"
+  },
+  {
+    "domain": "asianpaints.com",
+    "companyName": "Asian Paints"
+  },
+  {
+    "domain": "bergerpaints.com",
+    "companyName": "Berger Paints"
+  },
+  {
+    "domain": "pidilite.com",
+    "companyName": "Pidilite"
+  },
+  {
+    "domain": "crompton.co.in",
+    "companyName": "Crompton Greaves"
+  },
+  {
+    "domain": "voltas.com",
+    "companyName": "Voltas"
+  },
+  {
+    "domain": "blue-star.com",
+    "companyName": "Blue Star"
+  },
+  {
+    "domain": "havells.com",
+    "companyName": "Havells"
+  },
+  {
+    "domain": "polycab.com",
+    "companyName": "Polycab"
+  },
+  {
+    "domain": "siemens.com",
+    "companyName": "Siemens"
+  },
+  {
+    "domain": "ge.com",
+    "companyName": "GE"
+  },
+  {
+    "domain": "schneider-electric.com",
+    "companyName": "Schneider Electric"
+  },
+  {
+    "domain": "abb.com",
+    "companyName": "ABB"
+  },
+  {
+    "domain": "bosch.in",
+    "companyName": "Bosch India"
+  },
+  {
+    "domain": "larsentoubro.com",
+    "companyName": "Larsen & Toubro"
+  },
+  {
+    "domain": "shapoorji.in",
+    "companyName": "Shapoorji Pallonji"
+  },
+  {
+    "domain": "dlf.in",
+    "companyName": "DLF Limited"
+  },
+  {
+    "domain": "prestigeconstructions.com",
+    "companyName": "Prestige Group"
+  },
+  {
+    "domain": "sobha.com",
+    "companyName": "Sobha Ltd"
+  },
+  {
+    "domain": "brigadegroup.com",
+    "companyName": "Brigade Enterprises"
+  },
+  {
+    "domain": "godrejproperties.com",
+    "companyName": "Godrej Properties"
+  },
+  {
+    "domain": "mahindralifespaces.com",
+    "companyName": "Mahindra Lifespaces"
+  },
+  {
+    "domain": "embassygroup.com",
+    "companyName": "Embassy Group"
+  },
+  {
+    "domain": "biocon.com",
+    "companyName": "Biocon"
+  },
+  {
+    "domain": "drreddys.com",
+    "companyName": "Dr. Reddy's"
+  },
+  {
+    "domain": "sunpharma.com",
+    "companyName": "Sun Pharma"
+  },
+  {
+    "domain": "cipla.com",
+    "companyName": "Cipla"
+  },
+  {
+    "domain": "lupin.com",
+    "companyName": "Lupin"
+  },
+  {
+    "domain": "torrentpharma.com",
+    "companyName": "Torrent Pharma"
+  },
+  {
+    "domain": "aurobindo.com",
+    "companyName": "Aurobindo Pharma"
+  },
+  {
+    "domain": "divislabs.com",
+    "companyName": "Divi's Laboratories"
+  },
+  {
+    "domain": "natcopharma.co.in",
+    "companyName": "Natco Pharma"
+  },
+  {
+    "domain": "apollohospitals.com",
+    "companyName": "Apollo Hospitals"
+  },
+  {
+    "domain": "fortishealthcare.com",
+    "companyName": "Fortis Healthcare"
+  },
+  {
+    "domain": "maxhealthcare.in",
+    "companyName": "Max Healthcare"
+  },
+  {
+    "domain": "narayanahealth.org",
+    "companyName": "Narayana Health"
+  },
+  {
+    "domain": "manipalhospitals.com",
+    "companyName": "Manipal Hospitals"
+  },
+  {
+    "domain": "cloudninecare.com",
+    "companyName": "Cloudnine"
+  },
+  {
+    "domain": "practo.com",
+    "companyName": "Practo"
+  },
+  {
+    "domain": "pharmeasy.in",
+    "companyName": "PharmEasy"
+  },
+  {
+    "domain": "1mg.com",
+    "companyName": "1mg"
+  },
+  {
+    "domain": "netmeds.com",
+    "companyName": "Netmeds"
+  },
+  {
+    "domain": "apollo247.com",
+    "companyName": "Apollo 247"
+  },
+  {
+    "domain": "cure.fit",
+    "companyName": "cure.fit"
+  },
+  {
+    "domain": "healthifyme.com",
+    "companyName": "HealthifyMe"
+  },
+  {
+    "domain": "mfine.co",
+    "companyName": "mfine"
+  },
+  {
+    "domain": "urbancompany.com",
+    "companyName": "Urban Company"
+  },
+  {
+    "domain": "housejoy.in",
+    "companyName": "Housejoy"
+  },
+  {
+    "domain": "nobroker.in",
+    "companyName": "NoBroker"
+  },
+  {
+    "domain": "housing.com",
+    "companyName": "Housing.com"
+  },
+  {
+    "domain": "magicbricks.com",
+    "companyName": "MagicBricks"
+  },
+  {
+    "domain": "99acres.com",
+    "companyName": "99acres"
+  },
+  {
+    "domain": "squareyards.com",
+    "companyName": "Square Yards"
+  },
+  {
+    "domain": "proptiger.com",
+    "companyName": "PropTiger"
+  },
+  {
+    "domain": "commonfloor.com",
+    "companyName": "CommonFloor"
+  },
+  {
+    "domain": "nestaway.com",
+    "companyName": "Nestaway"
+  },
+  {
+    "domain": "stanza.living",
+    "companyName": "Stanza Living"
+  },
+  {
+    "domain": "your-space.in",
+    "companyName": "Your-Space"
+  },
+  {
+    "domain": "colive.com",
+    "companyName": "Colive"
+  },
+  {
+    "domain": "grexter.in",
+    "companyName": "Grexter"
+  },
+  {
+    "domain": "rentomojo.com",
+    "companyName": "Rentomojo"
+  },
+  {
+    "domain": "furlenco.com",
+    "companyName": "Furlenco"
+  },
+  {
+    "domain": "pepperfry.com",
+    "companyName": "Pepperfry"
+  },
+  {
+    "domain": "urbanladder.com",
+    "companyName": "Urban Ladder"
+  },
+  {
+    "domain": "livspace.com",
+    "companyName": "Livspace"
+  },
+  {
+    "domain": "homelane.com",
+    "companyName": "HomeLane"
+  },
+  {
+    "domain": "mygate.com",
+    "companyName": "MyGate"
+  },
+  {
+    "domain": "adda.io",
+    "companyName": "ADDA"
+  },
+  {
+    "domain": "apnacomplex.com",
+    "companyName": "ApnaComplex"
+  },
+  {
+    "domain": "jll.com",
+    "companyName": "JLL India"
+  },
+  {
+    "domain": "cushmanwakefield.com",
+    "companyName": "Cushman & Wakefield"
+  },
+  {
+    "domain": "cbre.com",
+    "companyName": "CBRE"
+  },
+  {
+    "domain": "colliers.com",
+    "companyName": "Colliers"
+  },
+  {
+    "domain": "knightfrank.co.in",
+    "companyName": "Knight Frank India"
+  },
+  {
+    "domain": "anarock.com",
+    "companyName": "ANAROCK"
+  },
+  {
+    "domain": "swiggyinstamart.com",
+    "companyName": "Swiggy Instamart"
+  },
+  {
+    "domain": "blinkit.in",
+    "companyName": "Blinkit India"
+  },
+  {
+    "domain": "bigbasket.com",
+    "companyName": "BigBasket"
+  },
+  {
+    "domain": "grofers.com",
+    "companyName": "Grofers"
+  },
+  {
+    "domain": "dunzo.com",
+    "companyName": "Dunzo"
+  },
+  {
+    "domain": "rapido.bike",
+    "companyName": "Rapido"
+  },
+  {
+    "domain": "porter.in",
+    "companyName": "Porter"
+  },
+  {
+    "domain": "shadowfax.in",
+    "companyName": "Shadowfax"
+  },
+  {
+    "domain": "delhivery.com",
+    "companyName": "Delhivery"
+  },
+  {
+    "domain": "ecomexpress.in",
+    "companyName": "Ecom Express"
+  },
+  {
+    "domain": "xpressbees.com",
+    "companyName": "XpressBees"
+  },
+  {
+    "domain": "bluedart.com",
+    "companyName": "Blue Dart"
+  },
+  {
+    "domain": "dtdc.com",
+    "companyName": "DTDC"
+  },
+  {
+    "domain": "firstflight.net",
+    "companyName": "First Flight"
+  },
+  {
+    "domain": "gati.com",
+    "companyName": "GATI"
+  },
+  {
+    "domain": "tvslogistics.com",
+    "companyName": "TVS Supply Chain"
+  },
+  {
+    "domain": "mahindralogistics.com",
+    "companyName": "Mahindra Logistics"
+  },
+  {
+    "domain": "allcargologistics.com",
+    "companyName": "Allcargo Logistics"
+  },
+  {
+    "domain": "containercorporation.com",
+    "companyName": "CONCOR"
+  },
+  {
+    "domain": "irctc.co.in",
+    "companyName": "IRCTC"
+  },
+  {
+    "domain": "indigo.in",
+    "companyName": "IndiGo"
+  },
+  {
+    "domain": "airindia.in",
+    "companyName": "Air India"
+  },
+  {
+    "domain": "spicejet.com",
+    "companyName": "SpiceJet"
+  },
+  {
+    "domain": "vistara.com",
+    "companyName": "Vistara"
+  },
+  {
+    "domain": "goair.in",
+    "companyName": "Go First"
+  },
+  {
+    "domain": "akasaair.com",
+    "companyName": "Akasa Air"
+  },
+  {
+    "domain": "yatra.com",
+    "companyName": "Yatra"
+  },
+  {
+    "domain": "easemytrip.com",
+    "companyName": "EaseMyTrip"
+  },
+  {
+    "domain": "thomsonreuters.com",
+    "companyName": "Thomson Reuters"
+  },
+  {
+    "domain": "factset.com",
+    "companyName": "FactSet"
+  },
+  {
+    "domain": "bloomberg.net",
+    "companyName": "Bloomberg"
+  },
+  {
+    "domain": "refinitiv.com",
+    "companyName": "Refinitiv"
+  },
+  {
+    "domain": "morningstar.com",
+    "companyName": "Morningstar"
+  },
+  {
+    "domain": "blackrock.com",
+    "companyName": "BlackRock"
+  },
+  {
+    "domain": "vanguard.com",
+    "companyName": "Vanguard"
+  },
+  {
+    "domain": "fidelity.com",
+    "companyName": "Fidelity"
+  },
+  {
+    "domain": "wellsfargo.com",
+    "companyName": "Wells Fargo"
+  },
+  {
+    "domain": "bankofamerica.com",
+    "companyName": "Bank of America"
+  },
+  {
+    "domain": "citi.com",
+    "companyName": "Citigroup"
+  },
+  {
+    "domain": "barclays.com",
+    "companyName": "Barclays"
+  },
+  {
+    "domain": "deutschebank.com",
+    "companyName": "Deutsche Bank"
+  },
+  {
+    "domain": "ubs.com",
+    "companyName": "UBS"
+  },
+  {
+    "domain": "credit-suisse.com",
+    "companyName": "Credit Suisse"
+  },
+  {
+    "domain": "hsbc.co.in",
+    "companyName": "HSBC India"
+  },
+  {
+    "domain": "standardchartered.co.in",
+    "companyName": "Standard Chartered India"
+  },
+  {
+    "domain": "dbs.com",
+    "companyName": "DBS Bank"
+  },
+  {
+    "domain": "sc.com",
+    "companyName": "Standard Chartered"
+  },
+  {
+    "domain": "paypal.com",
+    "companyName": "PayPal"
+  },
+  {
+    "domain": "stripe.com",
+    "companyName": "Stripe"
+  },
+  {
+    "domain": "adyen.com",
+    "companyName": "Adyen"
+  },
+  {
+    "domain": "checkout.com",
+    "companyName": "Checkout.com"
+  },
+  {
+    "domain": "wise.com",
+    "companyName": "Wise"
+  },
+  {
+    "domain": "revolut.com",
+    "companyName": "Revolut"
+  },
+  {
+    "domain": "monzo.com",
+    "companyName": "Monzo"
+  },
+  {
+    "domain": "n26.com",
+    "companyName": "N26"
+  },
+  {
+    "domain": "chime.com",
+    "companyName": "Chime"
+  },
+  {
+    "domain": "sofi.com",
+    "companyName": "SoFi"
+  },
+  {
+    "domain": "robinhood.com",
+    "companyName": "Robinhood"
+  },
+  {
+    "domain": "webull.com",
+    "companyName": "Webull"
+  },
+  {
+    "domain": "coinbase.com",
+    "companyName": "Coinbase"
+  },
+  {
+    "domain": "binance.com",
+    "companyName": "Binance"
+  },
+  {
+    "domain": "kraken.com",
+    "companyName": "Kraken"
+  },
+  {
+    "domain": "okx.com",
+    "companyName": "OKX"
+  },
+  {
+    "domain": "bitso.com",
+    "companyName": "Bitso"
+  },
+  {
+    "domain": "chainalysis.com",
+    "companyName": "Chainalysis"
+  },
+  {
+    "domain": "fireblocks.com",
+    "companyName": "Fireblocks"
+  },
+  {
+    "domain": "alchemy.com",
+    "companyName": "Alchemy"
+  },
+  {
+    "domain": "mongodb.com",
+    "companyName": "MongoDB"
+  },
+  {
+    "domain": "elastic.co",
+    "companyName": "Elastic"
+  },
+  {
+    "domain": "confluent.io",
+    "companyName": "Confluent"
+  },
+  {
+    "domain": "databricks.com",
+    "companyName": "Databricks"
+  },
+  {
+    "domain": "snowflake.com",
+    "companyName": "Snowflake"
+  },
+  {
+    "domain": "palantir.com",
+    "companyName": "Palantir"
+  },
+  {
+    "domain": "servicenow.com",
+    "companyName": "ServiceNow"
+  },
+  {
+    "domain": "workday.com",
+    "companyName": "Workday"
+  },
+  {
+    "domain": "splunk.com",
+    "companyName": "Splunk"
+  },
+  {
+    "domain": "datadoghq.com",
+    "companyName": "Datadog"
+  },
+  {
+    "domain": "newrelic.com",
+    "companyName": "New Relic"
+  },
+  {
+    "domain": "pagerduty.com",
+    "companyName": "PagerDuty"
+  },
+  {
+    "domain": "okta.com",
+    "companyName": "Okta"
+  },
+  {
+    "domain": "auth0.com",
+    "companyName": "Auth0"
+  },
+  {
+    "domain": "onelogin.com",
+    "companyName": "OneLogin"
+  },
+  {
+    "domain": "crowdstrike.com",
+    "companyName": "CrowdStrike"
+  },
+  {
+    "domain": "sentinelone.com",
+    "companyName": "SentinelOne"
+  },
+  {
+    "domain": "zscaler.com",
+    "companyName": "Zscaler"
+  },
+  {
+    "domain": "cloudflare.com",
+    "companyName": "Cloudflare"
+  },
+  {
+    "domain": "fastly.com",
+    "companyName": "Fastly"
+  },
+  {
+    "domain": "akamai.com",
+    "companyName": "Akamai"
+  },
+  {
+    "domain": "digitalocean.com",
+    "companyName": "DigitalOcean"
+  },
+  {
+    "domain": "linode.com",
+    "companyName": "Linode"
+  },
+  {
+    "domain": "vultr.com",
+    "companyName": "Vultr"
+  },
+  {
+    "domain": "hetzner.com",
+    "companyName": "Hetzner"
+  },
+  {
+    "domain": "scaleway.com",
+    "companyName": "Scaleway"
+  },
+  {
+    "domain": "ovhcloud.com",
+    "companyName": "OVHcloud"
+  },
+  {
+    "domain": "ionos.com",
+    "companyName": "IONOS"
+  },
+  {
+    "domain": "godaddy.com",
+    "companyName": "GoDaddy"
+  },
+  {
+    "domain": "namecheap.com",
+    "companyName": "Namecheap"
+  },
+  {
+    "domain": "shopify.com",
+    "companyName": "Shopify"
+  },
+  {
+    "domain": "bigcommerce.com",
+    "companyName": "BigCommerce"
+  },
+  {
+    "domain": "woocommerce.com",
+    "companyName": "WooCommerce"
+  },
+  {
+    "domain": "magento.com",
+    "companyName": "Magento"
+  },
+  {
+    "domain": "hubspot.com",
+    "companyName": "HubSpot"
+  },
+  {
+    "domain": "zendesk.com",
+    "companyName": "Zendesk"
+  },
+  {
+    "domain": "intercom.com",
+    "companyName": "Intercom"
+  },
+  {
+    "domain": "freshdesk.com",
+    "companyName": "Freshdesk"
+  },
+  {
+    "domain": "helpscout.com",
+    "companyName": "Help Scout"
+  },
+  {
+    "domain": "notion.so",
+    "companyName": "Notion"
+  },
+  {
+    "domain": "slack.com",
+    "companyName": "Slack"
+  },
+  {
+    "domain": "asana.com",
+    "companyName": "Asana"
+  },
+  {
+    "domain": "monday.com",
+    "companyName": "monday.com"
+  },
+  {
+    "domain": "clickup.com",
+    "companyName": "ClickUp"
+  },
+  {
+    "domain": "linear.app",
+    "companyName": "Linear"
+  },
+  {
+    "domain": "height.app",
+    "companyName": "Height"
+  },
+  {
+    "domain": "shortcut.com",
+    "companyName": "Shortcut"
+  },
+  {
+    "domain": "jira.com",
+    "companyName": "Jira"
+  },
+  {
+    "domain": "confluence.com",
+    "companyName": "Confluence"
+  },
+  {
+    "domain": "gitlab.com",
+    "companyName": "GitLab"
+  },
+  {
+    "domain": "github.com",
+    "companyName": "GitHub"
+  },
+  {
+    "domain": "bitbucket.org",
+    "companyName": "Bitbucket"
+  },
+  {
+    "domain": "circleci.com",
+    "companyName": "CircleCI"
+  },
+  {
+    "domain": "travis-ci.com",
+    "companyName": "Travis CI"
+  },
+  {
+    "domain": "jenkins.io",
+    "companyName": "Jenkins"
+  },
+  {
+    "domain": "teamcity.com",
+    "companyName": "TeamCity"
+  },
+  {
+    "domain": "bamboo.atlassian.com",
+    "companyName": "Bamboo"
+  },
+  {
+    "domain": "azure.microsoft.com",
+    "companyName": "Microsoft Azure"
+  },
+  {
+    "domain": "aws.amazon.com",
+    "companyName": "Amazon Web Services"
+  },
+  {
+    "domain": "cloud.google.com",
+    "companyName": "Google Cloud"
+  },
+  {
+    "domain": "oraclecloud.com",
+    "companyName": "Oracle Cloud"
+  },
+  {
+    "domain": "ibm.com",
+    "companyName": "IBM"
+  },
+  {
+    "domain": "redhat.com",
+    "companyName": "Red Hat"
+  },
+  {
+    "domain": "vmware.com",
+    "companyName": "VMware"
+  },
+  {
+    "domain": "canonical.com",
+    "companyName": "Canonical"
+  },
+  {
+    "domain": "suse.com",
+    "companyName": "SUSE"
+  },
+  {
+    "domain": "rancher.com",
+    "companyName": "Rancher"
+  },
+  {
+    "domain": "hashicorp.com",
+    "companyName": "HashiCorp"
+  },
+  {
+    "domain": "terraform.io",
+    "companyName": "Terraform"
+  },
+  {
+    "domain": "ansible.com",
+    "companyName": "Ansible"
+  },
+  {
+    "domain": "puppet.com",
+    "companyName": "Puppet"
+  },
+  {
+    "domain": "chef.io",
+    "companyName": "Chef"
+  },
+  {
+    "domain": "saltproject.io",
+    "companyName": "Salt Project"
+  },
+  {
+    "domain": "nginx.com",
+    "companyName": "NGINX"
+  },
+  {
+    "domain": "apache.org",
+    "companyName": "Apache Software Foundation"
+  },
+  {
+    "domain": "konghq.com",
+    "companyName": "Kong"
+  },
+  {
+    "domain": "tyk.io",
+    "companyName": "Tyk"
+  },
+  {
+    "domain": "ambassadorlabs.io",
+    "companyName": "Ambassador Labs"
+  },
+  {
+    "domain": "solo.io",
+    "companyName": "Solo.io"
+  },
+  {
+    "domain": "istio.io",
+    "companyName": "Istio"
+  },
+  {
+    "domain": "linkerd.io",
+    "companyName": "Linkerd"
+  },
+  {
+    "domain": "consul.io",
+    "companyName": "Consul"
+  },
+  {
+    "domain": "nomadproject.io",
+    "companyName": "Nomad"
+  },
+  {
+    "domain": "kubernetes.io",
+    "companyName": "Kubernetes"
+  },
+  {
+    "domain": "docker.com",
+    "companyName": "Docker"
+  },
+  {
+    "domain": "podman.io",
+    "companyName": "Podman"
+  },
+  {
+    "domain": "containerd.io",
+    "companyName": "containerd"
+  },
+  {
+    "domain": "cri-o.io",
+    "companyName": "CRI-O"
+  },
+  {
+    "domain": "quay.io",
+    "companyName": "Quay"
+  },
+  {
+    "domain": "harbor.com",
+    "companyName": "Harbor"
+  },
+  {
+    "domain": "jfrog.com",
+    "companyName": "JFrog"
+  },
+  {
+    "domain": "sonatype.com",
+    "companyName": "Sonatype"
+  },
+  {
+    "domain": "snyk.io",
+    "companyName": "Snyk"
+  },
+  {
+    "domain": "veracode.com",
+    "companyName": "Veracode"
+  },
+  {
+    "domain": "checkmarx.com",
+    "companyName": "Checkmarx"
+  },
+  {
+    "domain": "semgrep.dev",
+    "companyName": "Semgrep"
+  },
+  {
+    "domain": "synopsys.com",
+    "companyName": "Synopsys"
+  },
+  {
+    "domain": "microfocus.com",
+    "companyName": "Micro Focus"
+  },
+  {
+    "domain": "opentext.com",
+    "companyName": "OpenText"
+  },
+  {
+    "domain": "broadcom.com",
+    "companyName": "Broadcom"
+  },
+  {
+    "domain": "qualcomm.com",
+    "companyName": "Qualcomm"
+  },
+  {
+    "domain": "nvidia.com",
+    "companyName": "NVIDIA"
+  },
+  {
+    "domain": "amd.com",
+    "companyName": "AMD"
+  },
+  {
+    "domain": "intel.com",
+    "companyName": "Intel"
+  },
+  {
+    "domain": "arm.com",
+    "companyName": "Arm"
+  },
+  {
+    "domain": "mediatek.com",
+    "companyName": "MediaTek"
+  },
+  {
+    "domain": "qualtrics.com",
+    "companyName": "Qualtrics"
+  },
+  {
+    "domain": "surveysparrow.com",
+    "companyName": "SurveySparrow"
+  },
+  {
+    "domain": "typeform.com",
+    "companyName": "Typeform"
+  },
+  {
+    "domain": "surveymonkey.com",
+    "companyName": "SurveyMonkey"
+  },
+  {
+    "domain": "mailchimp.com",
+    "companyName": "Mailchimp"
+  },
+  {
+    "domain": "sendgrid.com",
+    "companyName": "SendGrid"
+  },
+  {
+    "domain": "mailgun.com",
+    "companyName": "Mailgun"
+  },
+  {
+    "domain": "postmarkapp.com",
+    "companyName": "Postmark"
+  },
+  {
+    "domain": "customer.io",
+    "companyName": "Customer.io"
+  },
+  {
+    "domain": "braze.com",
+    "companyName": "Braze"
+  },
+  {
+    "domain": "segment.com",
+    "companyName": "Segment"
+  },
+  {
+    "domain": "amplitude.com",
+    "companyName": "Amplitude"
+  },
+  {
+    "domain": "mixpanel.com",
+    "companyName": "Mixpanel"
+  },
+  {
+    "domain": "heap.io",
+    "companyName": "Heap"
+  },
+  {
+    "domain": "pendo.io",
+    "companyName": "Pendo"
+  },
+  {
+    "domain": "fullstory.com",
+    "companyName": "FullStory"
+  },
+  {
+    "domain": "logrocket.com",
+    "companyName": "LogRocket"
+  },
+  {
+    "domain": "hotjar.com",
+    "companyName": "Hotjar"
+  },
+  {
+    "domain": "contentsquare.com",
+    "companyName": "Contentsquare"
+  },
+  {
+    "domain": "crazyegg.com",
+    "companyName": "Crazy Egg"
+  },
+  {
+    "domain": "optimizely.com",
+    "companyName": "Optimizely"
+  },
+  {
+    "domain": "vwo.com",
+    "companyName": "VWO"
+  },
+  {
+    "domain": "launchdarkly.com",
+    "companyName": "LaunchDarkly"
+  },
+  {
+    "domain": "split.io",
+    "companyName": "Split"
+  },
+  {
+    "domain": "flagsmith.com",
+    "companyName": "Flagsmith"
+  },
+  {
+    "domain": "unleash-hosted.com",
+    "companyName": "Unleash"
+  },
+  {
+    "domain": "configcat.com",
+    "companyName": "ConfigCat"
+  },
+  {
+    "domain": "statsig.com",
+    "companyName": "Statsig"
+  },
+  {
+    "domain": "rudderstack.com",
+    "companyName": "RudderStack"
+  },
+  {
+    "domain": "fivetran.com",
+    "companyName": "Fivetran"
+  },
+  {
+    "domain": "airbyte.com",
+    "companyName": "Airbyte"
+  },
+  {
+    "domain": "stitchdata.com",
+    "companyName": "Stitch"
+  },
+  {
+    "domain": "matillion.com",
+    "companyName": "Matillion"
+  },
+  {
+    "domain": "dbt.com",
+    "companyName": "dbt Labs"
+  },
+  {
+    "domain": "thoughtspot.com",
+    "companyName": "Thoughtspot"
+  },
+  {
+    "domain": "looker.com",
+    "companyName": "Looker"
+  },
+  {
+    "domain": "mode.com",
+    "companyName": "Mode Analytics"
+  },
+  {
+    "domain": "sigma.com",
+    "companyName": "Sigma Computing"
+  },
+  {
+    "domain": "hex.tech",
+    "companyName": "Hex"
+  },
+  {
+    "domain": "deepnote.com",
+    "companyName": "Deepnote"
+  },
+  {
+    "domain": "observablehq.com",
+    "companyName": "Observable"
+  },
+  {
+    "domain": "retool.com",
+    "companyName": "Retool"
+  },
+  {
+    "domain": "appsmith.com",
+    "companyName": "Appsmith"
+  },
+  {
+    "domain": "budibase.com",
+    "companyName": "Budibase"
+  },
+  {
+    "domain": "outsystems.com",
+    "companyName": "OutSystems"
+  },
+  {
+    "domain": "mendix.com",
+    "companyName": "Mendix"
+  },
+  {
+    "domain": "powerapps.microsoft.com",
+    "companyName": "Microsoft Power Apps"
+  },
+  {
+    "domain": "appian.com",
+    "companyName": "Appian"
+  },
+  {
+    "domain": "pega.com",
+    "companyName": "Pega"
+  },
+  {
+    "domain": "camunda.com",
+    "companyName": "Camunda"
+  },
+  {
+    "domain": "temporal.io",
+    "companyName": "Temporal"
+  },
+  {
+    "domain": "inngest.com",
+    "companyName": "Inngest"
+  },
+  {
+    "domain": "trigger.dev",
+    "companyName": "Trigger.dev"
+  },
+  {
+    "domain": "windmill.dev",
+    "companyName": "Windmill"
+  },
+  {
+    "domain": "n8n.io",
+    "companyName": "n8n"
+  },
+  {
+    "domain": "make.com",
+    "companyName": "Make"
+  },
+  {
+    "domain": "zapier.com",
+    "companyName": "Zapier"
+  },
+  {
+    "domain": "ifttt.com",
+    "companyName": "IFTTT"
+  },
+  {
+    "domain": "workato.com",
+    "companyName": "Workato"
+  },
+  {
+    "domain": "boomi.com",
+    "companyName": "Boomi"
+  },
+  {
+    "domain": "mulesoft.com",
+    "companyName": "MuleSoft"
+  },
+  {
+    "domain": "talend.com",
+    "companyName": "Talend"
+  },
+  {
+    "domain": "informatica.com",
+    "companyName": "Informatica"
+  },
+  {
+    "domain": "snaplogic.com",
+    "companyName": "SnapLogic"
+  },
+  {
+    "domain": "jitterbit.com",
+    "companyName": "Jitterbit"
+  },
+  {
+    "domain": "celigo.com",
+    "companyName": "Celigo"
+  }
+]
